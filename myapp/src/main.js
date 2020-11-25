@@ -1,9 +1,13 @@
 import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 import App from './App.vue'
 import router from './router'
 import firebase from 'firebase'
 
 Vue.config.productionTip = false
+Vue.use(Vuetify)
+export default new Vuetify({ })
 
 const config = {
   apiKey: process.env.VUE_APP_API_KEY,
@@ -14,10 +18,10 @@ const config = {
   messagingSenderId: process.env.VUE_APP_MESSAGE_SENDING
 }
 
-console.log(config);
 firebase.initializeApp(config);
 
 new Vue({
+  vuetify: new Vuetify(),
   router,
   render: h => h(App),
 }).$mount('#app')
