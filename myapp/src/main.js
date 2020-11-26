@@ -4,6 +4,7 @@ import 'vuetify/dist/vuetify.min.css'
 import App from './App.vue'
 import router from './router'
 import firebase from 'firebase'
+import store from './plugins/auth_check'
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
@@ -22,6 +23,7 @@ firebase.initializeApp(config);
 
 new Vue({
   vuetify: new Vuetify(),
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')

@@ -22,14 +22,14 @@
 
       <template v-slot:extension>
         <v-tabs align-with-title>
-            <v-tab v-for="page in myPages" :key="page.id">
-                <button @click="$emit('input', page.id)">{{ page.name }}</button>
+            <v-tab v-for="page in myPages" :key="page.id" :to="page.path">
+                {{ page.name }}
             </v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
     
-      <v-container style="height: 300px;"></v-container>
+    <v-container style="height: 300px;"></v-container>
 </div>
 </template>
 
@@ -42,7 +42,6 @@ export default {
     },
     methods: {
         tablink(){
-            console.log(this.id);
             this.$emit('myclick', this.id);
         }
     }

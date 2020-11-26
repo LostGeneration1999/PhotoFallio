@@ -1,38 +1,44 @@
 <template>
-  <div class="signin">
-    <h2>Sign in</h2>
-    <input type="text" placeholder="Username" v-model="username">
-    <input type="password" placeholder="Password" v-model="password">
-    <button @click="signIn">Signin</button>
-  </div>
+  <v-card>
+    <div class="signin">
+        <h2>Sign in</h2>
+        <input type="text" placeholder="Email" v-model="email">
+        <input type="password" placeholder="Password" v-model="password">
+        <button @click="signIn">Signin</button>
+        <h3>{{ user }}</h3>
+    </div>
+  </v-card>
 </template>
 
 <script>
-import firebase from 'firebase'
+import { login } from '@/plugins/auth'
 
 export default {
   name: 'Signin',
   data () {
     return {
-      username: '',
-      password: ''
+      email: '',
+      password: '',
+      redirect: '/',
     }
   },
+  computed: {
+      user() {
+          return this.$store.getters.user;
+      }
+  },
   methods: {
-      signIn: function () {
-        firebase.auth().signInWithEmailAndPassword(this.username, this.password).then(
-            user => {
-                alert('Success!')
-                console.log(user)
-                this.$router.push('/')
-            },
-            err => {
-                console.log(err.message)
-                alert(err.message)
-            }
-        )
-    }
-  }
+    signIn() {
+        login(this.email, this.password)    
+        .then(() => {
+            this.$store.commit('onUserStatusChanged', true);
+            this.$router.push(this.redirect);
+        })
+        .catch(() => {
+            alert('ログインできませんでした');
+        })
+    },
+  },
 }
 </script>
 

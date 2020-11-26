@@ -1,34 +1,38 @@
 <template>
   <div id='app'>
     <v-app>
+      <NaviBar :drawer="drawer"/>
       <MainBar :my-pages="pages"
                @input="currentId=$event"></MainBar>
       <main>
-        <!-- my-page -->
-        <h1>{{ pages[currentId-1].name }}</h1>
-        <v-footer>Design by hoge.</v-footer>
+        <v-btn
+          color="pink"
+          dark
+          @click.stop="drawer = !drawer"
+        >
+          Toggle
+        </v-btn>
+        <router-view/>
       </main>
+      <v-footer>Design by hoge.</v-footer>
     </v-app>
   </div>
 </template>
 
 <script>
 import MainBar from './components/Mainbar'
-import Signin from './components/Signin'
-import Home from './views/Home'
-import Service from './views/Service'
-import Profile from './views/Profile'
+import NaviBar from './components/NaviBar'
 
 export default {
-    components: { MainBar },
+    components: { MainBar, NaviBar },
     data() {
         return {
+            drawer: null,
             currentId: 1,
             pages: [
-                { id: 1, name: 'Home', content: Home },
-                { id: 2, name: 'Service', content: Service },
-                { id: 3, name: 'Profile', content: Profile },
-                { id: 4, name: 'Signin', content: Signin }
+                { id: 1, name: 'Home', path: '/'},
+                { id: 2, name: 'Service', path: '/service' },
+                { id: 3, name: 'Profile', path: '/profile' },
             ]
         }
     },
@@ -48,4 +52,8 @@ export default {
   .link--active {
     font-size: 30px;
   }
+
+  .v-footer {
+  margin-top: auto;
+}
 </style>
