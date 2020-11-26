@@ -39,6 +39,7 @@ export default {
             ],
             items_logouted: [
                 { id: 0, name: 'Signin', path: '/signin' },
+                { id: 1, name: 'Register', path: '/register'}
             ]
         }
     },

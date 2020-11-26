@@ -6,18 +6,60 @@ import Service from './views/Service.vue'
 import Signin from './components/Signin'
 import Signout from './components/Signout'
 import Register from './components/Register'
+import store from './plugins/auth_check'
 
 // Pluginの適用
 Vue.use(Router);
 export default new Router({
     mode: 'history',
     routes: [
-        {path: '/', component: Home},
-        {path: '/profile', component: Profile},
+        {
+            path: '/', component: Home
+        },
+        {
+            path: '/profile', component: Profile
+        },
         // propsにより'id'としてService.vueに渡す
-        {path: '/service/:id', component: Service, props: true },
-        {path: '/signin', component: Signin},
-        {path: '/signout', component: Signout},
-        {path: '/register', component: Register}
+        // {path: '/service/:id', component: Service, props: true },
+        {
+            path: '/service', component: Service
+        },
+        {
+            path: '/signin', 
+            component: Signin,
+            beforeEnter(to, from, next){
+                if(store.getters.user){
+                    next('/signout');
+                }
+                else{
+                    next()
+                }
+            }
+        },
+        {
+            path: '/signout', 
+            component: Signout,
+            beforeEnter(to, from, next){
+                if(store.getters.user){
+                    next();
+                }
+                else{
+                    next('/signin')
+                }
+            }
+        },
+        {
+            path: '/register',
+            component: Register,
+            beforeEnter(to, from, next){
+                if(store.getters.user){
+                    console.log(this.$store.getter.user)
+                    next();
+                }
+                else{
+                    next()
+                }
+            }
+        }
     ]
 });
