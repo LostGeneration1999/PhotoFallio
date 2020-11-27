@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css' 
 import App from './App.vue'
 import router from './router'
 import firebase from 'firebase'
@@ -22,7 +23,7 @@ const config = {
 firebase.initializeApp(config);
 
 new Vue({
-  vuetify: new Vuetify(),
+  vuetify: new Vuetify( {icons: {iconfont: 'md',}}),
   store,
   router,
   render: h => h(App),

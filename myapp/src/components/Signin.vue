@@ -1,12 +1,12 @@
 <template>
-  <v-card>
-    <div class="signin">
-        <h2>Sign in</h2>
-        <input type="text" placeholder="Email" v-model="email">
-        <input type="password" placeholder="Password" v-model="password">
-        <button @click="signIn">Signin</button>
-        <h3>{{ user }}</h3>
-    </div>
+  <v-card class="mx-auto mt-5" width="70%">
+    <v-card-text>
+      <v-form class="signin-button">
+            <v-text-field prepend-icon="mdi-account-circle" type="text" label="Email" v-model="email" />
+            <v-text-field prepend-icon="mdi-lock" append-icon="mdi-eye-off" type="password" label="Password" v-model="password" />
+            <v-btn @click="signIn">Login</v-btn>
+      </v-form>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -43,6 +43,11 @@ export default {
 </script>
 
 <style scoped>
+
+.signin-button {
+  text-align: center
+}
+
 h1, h2 {
   font-weight: normal;
 }

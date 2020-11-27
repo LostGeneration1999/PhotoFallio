@@ -1,46 +1,71 @@
 <template>
-    <v-card>
-        <div>
-            <v-form>
-                <v-text-field require label="制作物のタイトル" v-model="formdata.title" />
+    <v-card class="mx-auto mt-5" width="70%">
+        <v-card-text>
+            <v-form class="send-button">
+                <v-text-field require label="制作物のタイトル（アルファベットで簡潔に）" v-model="formdata.title" />
                 <v-text-field require label="GithubのURL" v-model="formdata.github" />
                 <v-text-field label="制作物ののURL（あれば）" v-model="formdata.weburl" />
-                <v-autocomplete v-model="formdata.tech" :items="['JavaScript', 'Python']"
-                                chips label="使用した技術" full-width hide-details hide-no-data
-                                hide-selected multiple single-line />
-                <v-textarea require label="開発目的" v-model="formdata.purpose" />
-                <v-textarea require label="工夫箇所" v-model="formdata.desc" />
+                <v-textarea require label="開発" v-model="formdata.desc" />
+                <img v-if="formdata.imageurl" :src="formdata.imageurl" />
+                <v-file-input
+                    v-model="input_image"
+                    accept="image/*"
+                    show-size
+                    label="画像ファイルをアップロードしてください"
+                    prepend-icon="mdi-image"
+                    @change="onImagePicked"
+                ></v-file-input>
                 <v-btn @click="submit">Submit</v-btn>
             </v-form>
-        </div>
+        </v-card-text>
     </v-card>
 </template>
 
 <script>
-import { post } from '@/plugins/auth'
+import { post, upload } from '@/plugins/auth'
 
 export default {
     data() {
         return {
             redirect: "/",
+            input_image: null,
             formdata: {
-                title: "",
-                github: "",
-                weburl: "",
-                tech: [],
-                purpose: "",
-                desc: "",
-                imageurl: ""
-            }
+                title: '', github: '', weburl: '', desc: '', imageurl: '', }
         }
     },
     methods: {
         submit() {
-            post(this.formdata).then(() => {
-                console.log('正常にデータ格納できました')
-                this.$router.push(this.redirect);
-            })
+            if (this.input_image != null) {
+                upload(this.input_image, this.formdata.imageurl, this.formdata.title).then(() => {
+                    post(this.formdata).then(() => {
+                        console.log('正常にデータベースに格納できました');
+                        this.$router.push(this.redirect);
+                    })
+                })
+            }
+        },
+        onImagePicked(file) {
+            if (file !== undefined && file !== null) {
+                if (file.name.lastIndexOf('.') <= 0) {
+                return
+                }
+                const fr = new FileReader()
+                fr.readAsDataURL(file)
+                fr.addEventListener('load', () => {
+                this.uploadImageUrl = fr.result
+                })
+            } else {
+                this.uploadImageUrl = ''
+            }
         }
     }
 }
 </script>
+
+<style scoped>
+
+.send-button {
+  text-align: center
+}
+
+</style>
