@@ -28,7 +28,7 @@ export default new Router({
             path: '/signin', 
             component: Signin,
             beforeEnter(to, from, next){
-                if(store.getters.user){
+                if(store.getters.status){
                     next('/signout');
                 }
                 else{
@@ -40,7 +40,7 @@ export default new Router({
             path: '/signout', 
             component: Signout,
             beforeEnter(to, from, next){
-                if(store.getters.user){
+                if(store.getters.status){
                     next();
                 }
                 else{
@@ -52,8 +52,7 @@ export default new Router({
             path: '/register',
             component: Register,
             beforeEnter(to, from, next){
-                if(store.getters.user){
-                    console.log(this.$store.getter.user)
+                if(store.getters.status){
                     next();
                 }
                 else{

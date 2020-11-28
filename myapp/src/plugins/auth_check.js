@@ -10,8 +10,8 @@ export default new Vuex.Store({
         status: false
     },
     getters: {
-        user: state => state.status,
-        user_name: state => state.user,
+        status: state => state.status,
+        user: state => state.user,
     },
     mutations: {
         // mutationsのみstatusの更新を行う.

@@ -24,10 +24,10 @@ export function post (data) {
       github: data['github'],
       weburl: data['weburl'],
       description: data['desc'],
-      imageurl: data['imageurl']
   }, function(error) {
     if (error) {
       // The write failed...
+      alert('データの保存に失敗しました')
       console.log(error)
     } else {
       console.log("Data saved successfully!")
@@ -35,24 +35,44 @@ export function post (data) {
   });
 }
 
-export function get () {
-  const room = 'service'
-  const list = []
-  return firebase.database().ref(room).on("value", (data) => {
-    if (data) { return data  }
-    else { return list }
-  })
-}
-
-export function upload (file, serviceID) {
-  const imageURL = `tmp/${serviceID}`
-  return  firebase.storage().ref().child(imageURL).put(file,
+export function get (room) {
+  return firebase.firestore().collection(room).get(
     function(error) {
       if (error) {
         // The write failed...
+        alert('データの取得に失敗しました');
+        console.log(error);
+      } else {
+        console.log("Get data successfully!")
+      }
+    }
+  )
+}
+
+export function upload (file, serviceID) {
+    const imageURL = `tmp/${serviceID}`
+    return  firebase.storage().ref().child(imageURL).put(file,
+      function(error) {
+        if (error) {
+          // The write failed...
+          alert('画像のアップロードに失敗しました');
+          console.log(error);
+        } else {
+          console.log("Image file saved successfully!")
+        }
+      })
+}
+
+export function download (title) {
+  const imageURL = `tmp/${title}`
+  return firebase.storage().ref().child(imageURL).getDownloadURL(
+    function(error) {
+      if (!error) {
+        alert('画像のダウンロードに失敗しました');
         console.log(error)
       } else {
-        console.log("Image file saved successfully!")
+        console.log("Download URL successfully!")
       }
-    })
+    }
+  )
 }

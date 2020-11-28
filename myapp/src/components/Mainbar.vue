@@ -45,19 +45,18 @@
 </template>
 
 <style scoped>
-
 .menu-btn {
   text-align: right;
 }
 </style>
 
 <script>
+import store from '../plugins/auth_check'
 
 export default {
     // myPage
     data () {
       return {
-        drawer: null,
         currentId: 1,
         items_logouted: [
                 { id: 0, name: 'Signin', path: '/signin' },
@@ -76,7 +75,7 @@ export default {
     },
     computed: {
         user() {
-            return this.$store.getters.user;
+            return store.getters.status;
         }
     },
 }
