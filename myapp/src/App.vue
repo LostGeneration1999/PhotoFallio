@@ -2,10 +2,10 @@
   <div id='app'>
     <v-app>
       <MainBar></MainBar>
-      <main>
-        <router-view/>
-      </main>
-      <v-footer>Design by hoge.</v-footer>
+    <v-content>
+      <router-view />
+    </v-content>
+    <v-footer>Design by wired.</v-footer>
     </v-app>
   </div>
 </template>

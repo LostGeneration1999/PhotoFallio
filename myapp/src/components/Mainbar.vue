@@ -1,7 +1,6 @@
 <template>
-  <v-card class="overflow-hidden">
-    <v-row>
-      <v-app-bar absolute color="#6A76AB" dark shrink-on-scroll fade-img-on-scroll prominent
+  <header>
+      <v-app-bar app absolute color="#6A76AB" dark fade-img-on-scroll prominent shrink-on-scroll
         src="https://picsum.photos/1920/1080?random"
         scroll-target="#scrolling-techniques-3">
         <template v-slot:img="{ props }">
@@ -14,34 +13,34 @@
               gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"></v-img>
           </div>
         </template>
-
         
+        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <v-toolbar-title>Wired PortFallio</v-toolbar-title>
         <v-spacer></v-spacer>
-
-        <div v-if="user==true">
-            <div v-for="item in items_logouted" :key="item.title">
-              <v-btn prepend-icon="mdi-lock"  :to="item.path" />
-            </div>
-        </div>
-        <div v-else>
-            <div v-for="item in items_logined" :key="item.title">
-              <v-btn prepend-icon="mdi-lock" :to="item.path" />
-            </div>
-        </div>
-
         <template v-slot:extension>
           <v-tabs align-with-title>
-              <v-tab v-for="page in myPages" :key="page.id" :to="page.path">
-                  {{ page.name }}
-              </v-tab>
+                <v-tab v-for="page in myPages" :key="page.id" :to="page.path">
+                    {{ page.name }}
+                </v-tab>
           </v-tabs>
         </template>
       </v-app-bar>
-      
-      <v-container style="height: 225px;"></v-container>
-    </v-row>
-  </v-card>
+
+      <v-navigation-drawer v-model="drawer" fixed temporary>
+        <v-list nav dense>
+          <v-list-item-group v-if="user==false">
+            <v-list-item v-for="page in signin" :key="page.id" :to="page.path">
+              <v-list-item-title>{{ page.name }}</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group v-if="user==true">
+            <v-list-item v-for="page in signout" :key="page.id" :to="page.path">
+              <v-list-item-title>{{ page.name }}</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
+    </header>
 </template>
 
 <style scoped>
@@ -58,18 +57,18 @@ export default {
     data () {
       return {
         currentId: 1,
-        items_logouted: [
-                { id: 0, name: 'Signin', path: '/signin' },
-                { id: 1, name: 'Register', path: '/register'}
-            ],
-        items_logined: [
-                { id: 0, name: 'Signout', path: '/signout'},
-                { id: 1, name: 'Register', path: '/register'}
-            ],
+        drawer: false,
         myPages: [
                 { id: 1, name: 'Home', path: '/'},
-                { id: 2, name: 'Service', path: '/service' },
+                { id: 2, name: 'Skill', path: '/service' },
                 { id: 3, name: 'Profile', path: '/profile' },
+            ],
+        signin: [
+                { id: 1, name: 'Signin', path: '/signin' },
+        ],
+        signout: [
+                { id: 1, name: 'Signout', path: '/signout' },
+                { id: 2, name: 'Register', path: '/register', },
             ]
         }
     },
@@ -80,3 +79,4 @@ export default {
     },
 }
 </script>
+
