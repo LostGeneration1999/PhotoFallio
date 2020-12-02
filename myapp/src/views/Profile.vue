@@ -1,9 +1,10 @@
 <template>
     <v-container id="container-full">
         <v-layout xs12 mt-3 px-5 py-3 wrap row justify-center fill-height class="text-xs-center">
-            <v-flex xs12 text-xs-center row justify-center mt-5>
-                <v-avatar size="250" color="grey lighten-4">
-                </v-avatar>
+            <v-flex xs12 text-xs-center row justify-center mt-5>             
+                    <v-avatar size="250" color="grey lighten-4">
+                         <img src="../assets/myimage.png" alt="avatar">
+                    </v-avatar>
             </v-flex>
             <v-flex xs12 text-xs-center row justify-center>
                 <p class="headline font-weight mt-2">Wired / Student</p>
@@ -17,19 +18,25 @@
         </v-layout>
         <v-layout text-xs-center px-3 py-3  row justify-center wrap>
             <v-flex lg4 sm12 xs12 row justify-center>
-                <v-avatar size="150" color="grey lighten-4">
-                    <img src="https://vuetifyjs.com/apple-touch-icon-180x180.png" alt="avatar">
-                </v-avatar>
+                <a href="https://github.com/LostGeneration1999" target="_blank">
+                    <v-avatar size="150" color="grey lighten-4">
+                        <img src="../assets/github.png" alt="avatar">
+                    </v-avatar>
+                </a>
             </v-flex>
             <v-flex lg4 sm12 xs12 row justify-center>
-                <v-avatar size="150" color="grey lighten-4">
-                    <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="avatar">
-                </v-avatar>
+                <a href="https://twitter.com/bluethunder649" target="_blank">
+                    <v-avatar size="150" color="grey lighten-4">
+                        <img src="../assets/twitter.png" alt="avatar">
+                    </v-avatar>
+                </a>
             </v-flex>
             <v-flex lg4 sm12 xs12 row justify-center>
-                <v-avatar size="150" color="grey lighten-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png" alt="avatar">
-                </v-avatar>
+                <a href="https://melheaven.hatenadiary.jp/archive" target="_blank">
+                    <v-avatar size="150" color="grey lighten-4">
+                        <img src="../assets/hatena.png" alt="avatar">
+                    </v-avatar>
+                </a>
             </v-flex>
         </v-layout>
     </v-container>

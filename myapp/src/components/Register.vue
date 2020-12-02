@@ -6,7 +6,7 @@
                 <v-text-field require label="GithubのURL" v-model="formdata.github" />
                 <v-text-field label="制作物ののURL（あれば）" v-model="formdata.weburl" />
                 <v-textarea require label="開発" v-model="formdata.desc" />
-                <img v-if="uploadImageUrl" :src="this.uploadImageUrl" />
+                <img v-if="uploadImageUrl" height="300px" :src="this.uploadImageUrl" />
                 <v-file-input
                     v-model="input_image"
                     accept="image/*"
@@ -36,7 +36,7 @@ export default {
     methods: {
         submit() {
             if (this.input_image != null && this.formdata.title != '') {
-                upload(this.input_image, this.formdata.title).then(() => {
+                upload(this.input_image, `tmp/${this.formdata.title}`).then(() => {
                         post(this.formdata).then(() => {
                             console.log('正常にデータベースに格納できました');
                             this.$router.push(this.redirect);

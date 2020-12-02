@@ -6,6 +6,7 @@ import Service from './views/Service.vue'
 import Signin from './components/Signin'
 import Signout from './components/Signout'
 import Register from './components/Register'
+import Album from './components/Album'
 import store from './plugins/auth_check'
 
 // Pluginの適用
@@ -56,7 +57,19 @@ export default new Router({
                     next();
                 }
                 else{
-                    next()
+                    next('/signin')
+                }
+            }
+        },
+        {
+            path: '/album',
+            component: Album,
+            beforeEnter(to, from, next){
+                if(store.getters.status){
+                    next();
+                }
+                else{
+                    next('/signin')
                 }
             }
         }

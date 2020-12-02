@@ -35,6 +35,21 @@ export function post (data) {
   });
 }
 
+export function registerAlbum (id) {
+  const room = 'album'
+  return firebase.firestore().collection(room).add({
+    id: id
+}, function(error) {
+  if (error) {
+    // The write failed...
+    alert('データの保存に失敗しました')
+    console.log(error)
+  } else {
+    console.log("Data saved successfully!")
+  }
+});
+}
+
 export function get (room) {
   return firebase.firestore().collection(room).get(
     function(error) {
@@ -50,7 +65,7 @@ export function get (room) {
 }
 
 export function upload (file, serviceID) {
-    const imageURL = `tmp/${serviceID}`
+    const imageURL = serviceID
     return  firebase.storage().ref().child(imageURL).put(file,
       function(error) {
         if (error) {
@@ -63,8 +78,8 @@ export function upload (file, serviceID) {
       })
 }
 
-export function download (title) {
-  const imageURL = `tmp/${title}`
+export function download (path) {
+  const imageURL = path
   return firebase.storage().ref().child(imageURL).getDownloadURL(
     function(error) {
       if (!error) {

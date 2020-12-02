@@ -69,6 +69,7 @@ export default {
         signout: [
                 { id: 1, name: 'Signout', path: '/signout' },
                 { id: 2, name: 'Register', path: '/register', },
+                { id: 3, name: 'Album Register', path: '/album', },
             ]
         }
     },

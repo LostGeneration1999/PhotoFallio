@@ -35,7 +35,7 @@ export default {
                 const get_list = [];
                 data.forEach(function(doc){
                     let docdata = doc.data()
-                    download(docdata.title)
+                    download(`tmp/${docdata.title}`)
                     .then((imageurl) => {
                         docdata['imageurl'] = imageurl;
                         get_list.push(docdata);
