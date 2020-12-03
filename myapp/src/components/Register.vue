@@ -38,7 +38,6 @@ export default {
             if (this.input_image != null && this.formdata.title != '') {
                 upload(this.input_image, `tmp/${this.formdata.title}`).then(() => {
                         post(this.formdata).then(() => {
-                            console.log('正常にデータベースに格納できました');
                             this.$router.push(this.redirect);
                         })
                 })

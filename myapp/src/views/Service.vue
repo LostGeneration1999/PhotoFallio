@@ -11,7 +11,7 @@
                         </v-card-text>
                         <v-card-actions>
                             <div v-if="service.weburl">
-                                <v-btn color="deep-purple lighten-2" text :href="service.weburl">{{service.title}}へ！</v-btn>
+                                <v-btn color="deep-purple lighten-2" text :href="service.weburl" target="_blank">{{service.title}}へ！</v-btn>
                             </div>
                         </v-card-actions>
                     </v-card>

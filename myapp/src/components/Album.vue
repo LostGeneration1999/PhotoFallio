@@ -35,7 +35,6 @@ export default {
             if (this.input_image != null && this.id != '') {
                 upload(this.input_image, `album/${this.id}`).then(() => {
                         registerAlbum(this.id).then(() => {
-                            console.log('正常にデータベースに格納できました');
                             this.$router.push(this.redirect);
                         })
                 })

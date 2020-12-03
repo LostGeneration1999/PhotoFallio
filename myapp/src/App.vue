@@ -2,9 +2,9 @@
   <div id='app'>
     <v-app>
       <MainBar></MainBar>
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
     <v-footer>Design by wired.</v-footer>
     </v-app>
   </div>

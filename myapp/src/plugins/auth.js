@@ -26,12 +26,8 @@ export function post (data) {
       description: data['desc'],
   }, function(error) {
     if (error) {
-      // The write failed...
-      alert('データの保存に失敗しました')
-      console.log(error)
-    } else {
-      console.log("Data saved successfully!")
-    }
+      alert('データの保存に失敗しました'+error);
+    } 
   });
 }
 
@@ -41,12 +37,8 @@ export function registerAlbum (id) {
     id: id
 }, function(error) {
   if (error) {
-    // The write failed...
-    alert('データの保存に失敗しました')
-    console.log(error)
-  } else {
-    console.log("Data saved successfully!")
-  }
+    alert('データの保存に失敗しました'+error);
+  } 
 });
 }
 
@@ -54,12 +46,8 @@ export function get (room) {
   return firebase.firestore().collection(room).get(
     function(error) {
       if (error) {
-        // The write failed...
-        alert('データの取得に失敗しました');
-        console.log(error);
-      } else {
-        console.log("Get data successfully!")
-      }
+        alert('データの取得に失敗しました'+error);
+      } 
     }
   )
 }
@@ -69,12 +57,8 @@ export function upload (file, serviceID) {
     return  firebase.storage().ref().child(imageURL).put(file,
       function(error) {
         if (error) {
-          // The write failed...
-          alert('画像のアップロードに失敗しました');
-          console.log(error);
-        } else {
-          console.log("Image file saved successfully!")
-        }
+          alert('画像のアップロードに失敗しました'+error);
+        } 
       })
 }
 
@@ -83,11 +67,8 @@ export function download (path) {
   return firebase.storage().ref().child(imageURL).getDownloadURL(
     function(error) {
       if (!error) {
-        alert('画像のダウンロードに失敗しました');
-        console.log(error)
-      } else {
-        console.log("Download URL successfully!")
-      }
+        alert('画像のダウンロードに失敗しました'+error);
+      } 
     }
   )
 }

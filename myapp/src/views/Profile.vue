@@ -3,14 +3,14 @@
         <v-layout xs12 mt-3 px-5 py-3 wrap row justify-center fill-height class="text-xs-center">
             <v-flex xs12 text-xs-center row justify-center mt-5>             
                     <v-avatar size="250" color="grey lighten-4">
-                         <img src="../assets/myimage.png" alt="avatar">
+                         <img src="../assets/logo.png" alt="avatar">
                     </v-avatar>
             </v-flex>
             <v-flex xs12 text-xs-center row justify-center>
                 <p class="headline font-weight mt-2">Wired / Student</p>
             </v-flex>
             <v-flex xs12 text-xs-center row justify-center >
-                <p class="title font-weight-thin mt-3">高層ビル、野球、邦ロックが好きです。</p>
+                <p class="title font-weight-thin mt-3">高層ビル、野球、邦ロックが好きです。建設×深層学習の研究をしています。</p>
             </v-flex>
             <v-flex xs12 text-xs-center row justify-center >
                 <p class="title font-weight-thin mt-3">Arduino・Pytorch・Vue.js・Express・Railsを触った経験があります。</p>
